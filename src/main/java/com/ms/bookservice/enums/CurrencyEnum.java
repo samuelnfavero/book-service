@@ -1,4 +1,4 @@
-package com.ms.bookservice.dto.enums;
+package com.ms.bookservice.enums;
 
 import lombok.AllArgsConstructor;
 
