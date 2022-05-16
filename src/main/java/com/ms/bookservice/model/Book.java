@@ -35,9 +35,9 @@ public class Book implements Serializable {
     private BigDecimal price;
     @Column
     private String title;
-    @Column
+    @Transient
     private String currency;
-    @Column
+    @Transient
     private String environment;
 
 

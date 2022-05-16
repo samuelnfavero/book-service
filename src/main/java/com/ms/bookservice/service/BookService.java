@@ -5,4 +5,6 @@ import com.ms.bookservice.dto.response.BookResponse;
 
 public interface BookService {
     BookResponse create(BookRequest bookRequest);
+
+    BookResponse findById(Long id);
 }

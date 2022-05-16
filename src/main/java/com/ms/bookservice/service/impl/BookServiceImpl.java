@@ -3,6 +3,7 @@ package com.ms.bookservice.service.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ms.bookservice.dto.request.BookRequest;
 import com.ms.bookservice.dto.response.BookResponse;
+import com.ms.bookservice.exceptions.BookNotFoundException;
 import com.ms.bookservice.model.Book;
 import com.ms.bookservice.repository.BookRepository;
 import com.ms.bookservice.service.BookService;
@@ -24,5 +25,12 @@ public class BookServiceImpl implements BookService {
         Book book = objectMapper.convertValue(bookRequest, Book.class);
         Book savedBook = bookRepository.save(book);
         return new BookResponse(savedBook);
+    }
+
+    @Override
+    public BookResponse findById(Long id) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new BookNotFoundException(String.format("O livro com id igual a %s não encontrado", id)));
+        return objectMapper.convertValue(book, BookResponse.class);
     }
 }
