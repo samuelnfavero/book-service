@@ -4,6 +4,7 @@ import com.ms.bookservice.dto.request.BookRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "book")
 @AllArgsConstructor @NoArgsConstructor
-@Getter
+@Getter @Setter
 @EntityListeners(AuditingEntityListener.class)
 public class Book implements Serializable {
 
@@ -35,7 +36,7 @@ public class Book implements Serializable {
     private BigDecimal price;
     @Column
     private String title;
-    @Transient
+    @Column
     private String currency;
     @Transient
     private String environment;

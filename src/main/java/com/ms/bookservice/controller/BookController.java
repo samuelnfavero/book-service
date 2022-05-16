@@ -20,8 +20,8 @@ public class BookController {
         return bookService.create(bookRequest);
     }
 
-    @GetMapping("/{id}")
-    public BookResponse findById(@PathVariable(name = "id") Long id){
-        return bookService.findById(id);
+    @GetMapping("/{id}/{currency}")
+    public BookResponse findById(@PathVariable(name = "id") Long id, @PathVariable(name = "currency") String currency){
+        return bookService.findByIdAndSelectCurrency(id, currency);
     }
 }
