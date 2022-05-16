@@ -6,7 +6,7 @@ spring:
     name: book-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/book-service
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: postgres123
 
@@ -20,3 +20,9 @@ spring:
           lob:
             non_contextual_creation: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  flyway:
+    url: jdbc:postgresql://localhost:5432/postgres
+    schemas: public
+    user: postgres
+    password: postgres123
