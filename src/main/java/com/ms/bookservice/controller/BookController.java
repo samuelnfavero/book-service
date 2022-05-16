@@ -16,7 +16,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    public BookResponse create(BookRequest){
-        return null;
+    public BookResponse create(BookRequest bookRequest){
+        return bookService.create(bookRequest);
     }
 }

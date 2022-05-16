@@ -1,6 +1,6 @@
 package com.ms.bookservice.dto.request;
 
-import com.ms.bookservice.dto.enums.CurrencyEnum;
+import com.ms.bookservice.enums.CurrencyEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

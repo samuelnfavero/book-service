@@ -1,6 +1,8 @@
 package com.ms.bookservice.model;
 
+import com.ms.bookservice.dto.request.BookRequest;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,7 +11,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "book")
 @AllArgsConstructor @NoArgsConstructor
+@Getter
 public class Book implements Serializable {
 
     @Id
@@ -27,5 +31,6 @@ public class Book implements Serializable {
     private String currency;
     @Column
     private String environment;
+
 
 }
