@@ -12,9 +12,7 @@ import java.time.LocalDate;
 public class BookRequest {
 
     private String author;
-    private LocalDate launchDate;
     private BigDecimal price;
     private String title;
     private CurrencyEnum currency;
-    private String environement;
 }

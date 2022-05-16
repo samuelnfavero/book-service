@@ -3,6 +3,7 @@ package com.ms.bookservice.controller;
 import com.ms.bookservice.dto.request.BookRequest;
 import com.ms.bookservice.dto.response.BookResponse;
 import com.ms.bookservice.service.BookService;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
+    @PostMapping
     public BookResponse create(BookRequest bookRequest){
         return bookService.create(bookRequest);
     }

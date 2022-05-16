@@ -23,6 +23,6 @@ public class BookServiceImpl implements BookService {
     public BookResponse create(BookRequest bookRequest) {
         Book book = objectMapper.convertValue(bookRequest, Book.class);
         Book savedBook = bookRepository.save(book);
-        return new BookResponse(book);
+        return new BookResponse(savedBook);
     }
 }
