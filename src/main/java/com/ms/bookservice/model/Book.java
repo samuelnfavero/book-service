@@ -4,16 +4,20 @@ import com.ms.bookservice.dto.request.BookRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "book")
 @AllArgsConstructor @NoArgsConstructor
 @Getter
+@EntityListeners(AuditingEntityListener.class)
 public class Book implements Serializable {
 
     @Id
@@ -22,7 +26,8 @@ public class Book implements Serializable {
     @Column
     private String author;
     @Column
-    private LocalDate launchDate;
+    @CreatedDate
+    private LocalDateTime launchDate;
     @Column
     private BigDecimal price;
     @Column

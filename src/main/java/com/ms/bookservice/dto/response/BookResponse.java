@@ -7,13 +7,14 @@ import lombok.Getter;
 import javax.persistence.Column;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Getter
 public class BookResponse {
 
     private String author;
-    private LocalDate launchDate;
+    private LocalDateTime launchDate;
     private BigDecimal price;
     private String title;
     private String currency;
