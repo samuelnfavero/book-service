@@ -1,6 +1,7 @@
 package com.ms.bookservice.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ms.bookservice.client.CambioClient;
 import com.ms.bookservice.client.CambioService;
 import com.ms.bookservice.dto.request.BookRequest;
 import com.ms.bookservice.dto.request.CambioRequest;
@@ -17,12 +18,12 @@ public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
     private final ObjectMapper objectMapper;
-    private final CambioService cambioService;
+    private final CambioClient cambioClient;
 
-    public BookServiceImpl(BookRepository bookRepository, ObjectMapper objectMapper, CambioService cambioService) {
+    public BookServiceImpl(BookRepository bookRepository, ObjectMapper objectMapper, CambioClient cambioClient) {
         this.bookRepository = bookRepository;
         this.objectMapper = objectMapper;
-        this.cambioService = cambioService;
+        this.cambioClient = cambioClient;
     }
 
     @Override
@@ -37,8 +38,7 @@ public class BookServiceImpl implements BookService {
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new BookNotFoundException(String.format("O livro com id igual a %s não encontrado", id)));
         if(book.getCurrency() != convertTo){
-            CambioRequest  cambioRequest = new CambioRequest(book.getCurrency(), convertTo, book.getPrice());
-            CambioResponse cambioResponse = cambioService.getCambio(cambioRequest);
+            CambioResponse cambioResponse = cambioClient.getCambio(book.getPrice(), book.getCurrency(), convertTo);
             book.setPrice(cambioResponse.getConvertedValue());
             book.setCurrency(convertTo);
         }
