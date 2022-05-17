@@ -26,3 +26,6 @@ spring:
     schemas: public
     user: postgres
     password: postgres123
+
+cambio-service:
+  url: http://localhost:8000/cambio-service

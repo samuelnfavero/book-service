@@ -3,6 +3,7 @@ package com.ms.bookservice.client;
 import com.ms.bookservice.dto.request.CambioRequest;
 import com.ms.bookservice.dto.response.CambioResponse;
 import com.ms.bookservice.enums.CurrencyEnum;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,8 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class CambioService {
 
-    private static final String URL = "http://localhost:8000/cambio-service";
+    @Value("${cambio-service.url}")
+    private String URL;
 
     private final RestTemplate restTemplate;
 
