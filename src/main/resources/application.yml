@@ -1,5 +1,5 @@
 server:
-  port: 8100
+  port: 8102
 
 eureka:
   client:
@@ -14,6 +14,8 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: postgres123
+    hikari:
+      schema: books
 
   jpa:
     hibernate:
@@ -28,9 +30,43 @@ spring:
 
   flyway:
     url: jdbc:postgresql://localhost:5432/postgres
-    schemas: public
+    schemas: books
     user: postgres
     password: postgres123
+  boot:
+    admin:
+      client:
+        url: http://localhost:8888
 
 cambio-service:
   url: http://localhost:8000/cambio-service
+
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: false
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  management:
+    metrics:
+      tags:
+        application=${spring:application:name}:
+
+info:
+  app:
+    name: @project.name@
+    version: @project.version@
+

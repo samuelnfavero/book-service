@@ -1,8 +1,11 @@
 services:
   postgres-compose:
+    container_name: postgres-compose
     image: postgres
     environment:
+      POSTGRES_USERNAME: "postgres"
       POSTGRES_PASSWORD: "postgres123"
+      POSTGRES_DB: "cambio-service"
     ports:
       - "5432:5432"
     volumes:
@@ -11,6 +14,7 @@ services:
       - postgres-compose-network
 
   pgadmin-compose:
+    container_name: pgadmin-compose
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: "samuelnfavero@gmail.com"
@@ -22,6 +26,50 @@ services:
     networks:
       - postgres-compose-network
 
+#  cambio-service-compose:
+#    image: 9e83b1f9ec24
+#    ports:
+#      - "8000:8000"
+#    depends_on:
+#      - pgadmin-compose
+#      - eureka-service-compose
+#
+#    networks:
+#      - postgres-compose-network
+
+  eureka-service-compose:
+    container_name: eureka-service
+    image: 259dcdb12c17
+    ports:
+      - "8761:8761"
+    networks:
+      - postgres-compose-network
+
+  prometheus-compose:
+    container_name: prometheus
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - /home/samuelnfavero/Documentos/Development/CursoMicrosserviços/book-service/src/main/resources/prometheus.yml:/etc/prometheus/prometheus.yml
+    network_mode: host
+
+#    networks:
+#      - postgres-compose-network
+#
+
+#volumes:
+#  prometheus-data:
+#  postgres-volume:
+#    external: true
+#    name: postgres-volume
 networks:
   postgres-compose-network:
     driver: bridge
+#  prometheus-network:
+#    driver: host
+
+#configs:
+#  prometheus-config:
+#    file: /etc/prometheus/prometheus.yml
+
