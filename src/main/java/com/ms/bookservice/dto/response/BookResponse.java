@@ -3,6 +3,7 @@ package com.ms.bookservice.dto.response;
 import com.ms.bookservice.model.Book;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import java.math.BigDecimal;
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
-@Getter
+@Getter @Setter
 public class BookResponse {
 
     private String author;
